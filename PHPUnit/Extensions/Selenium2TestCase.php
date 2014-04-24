@@ -213,10 +213,12 @@ abstract class PHPUnit_Extensions_Selenium2TestCase extends PHPUnit_Framework_Te
             // browser
         } elseif (isset($params['sessionStrategy'])) {
             $strat = $params['sessionStrategy'];
-            if ($strat != "isolated" && $strat != "shared") {
+            if ($strat != "isolated" && $strat != "shared" && $strat != "persistent") {
                 throw new InvalidArgumentException("Session strategy must be either 'isolated' or 'shared'");
             } elseif ($strat == "isolated") {
                 self::$browserSessionStrategy = new PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Isolated;
+            } elseif ($strat == "persistent") {
+                self::$browserSessionStrategy = new PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Persistent(self::defaultSessionStrategy());
             } else {
                 self::$browserSessionStrategy = new PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Shared(self::defaultSessionStrategy());
             }
@@ -301,7 +303,7 @@ abstract class PHPUnit_Extensions_Selenium2TestCase extends PHPUnit_Framework_Te
         } catch (Exception $e) {
             $thrownException = $e;
         }
-        
+
         if ($this->collectCodeCoverageInformation) {
             $this->session->cookie()->remove('PHPUNIT_SELENIUM_TEST_ID');
         }

@@ -93,6 +93,7 @@ spl_autoload_register(
             'phpunit_extensions_selenium2testcase_sessionstrategy' => '/Extensions/Selenium2TestCase/SessionStrategy.php',
             'phpunit_extensions_selenium2testcase_sessionstrategy_isolated' => '/Extensions/Selenium2TestCase/SessionStrategy/Isolated.php',
             'phpunit_extensions_selenium2testcase_sessionstrategy_shared' => '/Extensions/Selenium2TestCase/SessionStrategy/Shared.php',
+            'phpunit_extensions_selenium2testcase_sessionstrategy_persistent' => '/Extensions/Selenium2TestCase/SessionStrategy/Persistent.php',
             'phpunit_extensions_selenium2testcase_statecommand' => '/Extensions/Selenium2TestCase/StateCommand.php',
             'phpunit_extensions_selenium2testcase_url' => '/Extensions/Selenium2TestCase/URL.php',
             'phpunit_extensions_selenium2testcase_waituntil' => '/Extensions/Selenium2TestCase/WaitUntil.php',

@@ -93,6 +93,11 @@ class PHPUnit_Extensions_Selenium2TestCase_Session
      */
     private $stopped = FALSE;
 
+    /**
+     * @var boolean
+     */
+    private $persistentSession = FALSE;
+
     public function __construct($driver,
                                 PHPUnit_Extensions_Selenium2TestCase_URL $url,
                                 PHPUnit_Extensions_Selenium2TestCase_URL $baseUrl,
@@ -109,6 +114,11 @@ class PHPUnit_Extensions_Selenium2TestCase_Session
     public function id()
     {
         return $this->url->lastSegment();
+    }
+
+    public function setPersistentSession($bool)
+    {
+        $this->persistentSession = $bool;
     }
 
     protected function initCommands()
@@ -187,6 +197,9 @@ class PHPUnit_Extensions_Selenium2TestCase_Session
      */
     public function stop()
     {
+        if ($this->persistentSession === true)
+            return;
+
         if ($this->stopped) {
             return;
         }
