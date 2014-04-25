@@ -65,8 +65,6 @@
  */
 class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Extensions_Selenium2TestCase {
 
-	const DEBUG_SELENIUM_SERVER           = false;
-
 	const SELENIUM_HOST                   = '127.0.0.1';
 	const SELENIUM_PORT                   = 4444;
 	const SELENIUM_RUNNING_PATH           = '/wd/hub/status';
@@ -95,6 +93,16 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 		self::SELENIUM_BROWSER_FIREFOX   => null, // no driver neccessary
 		self::SELENIUM_BROWSER_PHANTOMJS => 'Dphantomjs.binary.path',
 	];
+
+	/**
+	 * Control whether to start selenium server with -debug option.
+	 * @var boolean
+	 */
+	static protected $debugSeleniumServer  = false;
+
+	static public function setDebugSeleniumServer($bool) {
+		$this->debugSeleniumServer = $bool;
+	}
 
 	static public function browsers() {
 		$result = [];
@@ -138,7 +146,7 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 			$cmd = 'start /B "" "java" -jar ' . $path.self::SELENIUM_SERVER_JAR_PATH .
 				' -port ' . self::SELENIUM_PORT;
 
-			if (self::DEBUG_SELENIUM_SERVER) {
+			if (self::$debugSeleniumServer) {
 				$cmd .= ' -debug';
 			}
 
