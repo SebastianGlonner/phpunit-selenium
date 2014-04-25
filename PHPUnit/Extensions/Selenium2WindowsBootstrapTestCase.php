@@ -143,7 +143,7 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 			// start server
 			$path = dirname(__FILE__).'\\'.self::EXTENSION_ROOT;
 
-			$cmd = 'start /B "" "java" -jar ' . $path.self::SELENIUM_SERVER_JAR_PATH .
+			$cmd = 'start "" "java" -jar ' . $path.self::SELENIUM_SERVER_JAR_PATH .
 				' -port ' . self::SELENIUM_PORT;
 
 			if (self::$debugSeleniumServer) {
@@ -169,7 +169,7 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 			if ( $handle === false )
 				throw new Exception('Could not start selenium standalone server.');
 
-			$read = fread($handle, 8192);
+			//$read = fread($handle, 8192);
 			$returnCode = @pclose($handle);
 			if ( $returnCode !== 0 )
 				throw new Exception('Invalid return code for command starting standalone selenium server.');
