@@ -82,7 +82,7 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 
 	static public $browserDrivers         = [
 		self::SELENIUM_BROWSER_CHROME    => 'Drivers\\chromedriver.exe',
-		self::SELENIUM_BROWSER_IE        => 'Drivers\\IEDriverServer.exe',
+		self::SELENIUM_BROWSER_IE        => 'Drivers\\IEDriverServer_win32.exe',
 		self::SELENIUM_BROWSER_FIREFOX   => null, // no driver neccessary
 		self::SELENIUM_BROWSER_PHANTOMJS => 'Drivers\\phantomjs.exe',
 	];
@@ -108,9 +108,9 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 		$result = [];
 		$browsers= [
 			// self::SELENIUM_BROWSER_PHANTOMJS,
-			self::SELENIUM_BROWSER_CHROME,
+			// self::SELENIUM_BROWSER_CHROME,
 			// self::SELENIUM_BROWSER_FIREFOX,
-			// self::SELENIUM_BROWSER_IE,
+			self::SELENIUM_BROWSER_IE,
 		];
 		foreach ( $browsers as $browser ) {
 			$result[] = array(
