@@ -150,7 +150,7 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 				$cmd .= ' -debug';
 			}
 
-			$browsers = self::browsers();
+			$browsers = static::browsers();
 			foreach ($browsers as $params) {
 				$browserName = $params['browserName'];
 
