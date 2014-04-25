@@ -64,9 +64,8 @@
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  */
 class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Extensions_Selenium2TestCase {
-	const DEVELOP                         = true;
 
-	const DEBUG_SELENIUM_SERVER           = true;
+	const DEBUG_SELENIUM_SERVER           = false;
 
 	const SELENIUM_HOST                   = '127.0.0.1';
 	const SELENIUM_PORT                   = 4444;
