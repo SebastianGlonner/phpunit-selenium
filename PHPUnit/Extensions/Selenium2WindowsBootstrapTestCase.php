@@ -96,8 +96,6 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 		self::SELENIUM_BROWSER_PHANTOMJS => 'Dphantomjs.binary.path',
 	];
 
-	private $baseUrl                      = null;
-
 	static public function browsers() {
 		$result = [];
 		$browsers= [
