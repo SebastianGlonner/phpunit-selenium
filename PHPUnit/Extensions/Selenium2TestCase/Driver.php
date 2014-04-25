@@ -140,6 +140,13 @@ class PHPUnit_Extensions_Selenium2TestCase_Driver
             } else {
                 $message = "Internal server error while executing $http_method request at $url. Response: " . var_export($content, TRUE);
             }
+
+            $message .= "\n\nAdditional Information:\n".print_r([
+                'url'    => $url->getValue(),
+                'method' => $http_method,
+                'params' => $params,
+            ], true);
+
             throw new PHPUnit_Extensions_Selenium2TestCase_WebDriverException($message, isset($content['status']) ? $content['status'] : 13);
         }
         return new PHPUnit_Extensions_Selenium2TestCase_Response($content, $info);
