@@ -92,8 +92,10 @@ class PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Persistent
             $port                          = $sessionParameters['port'];
             $sessionPrefix                 = $sessionParameters['sessionPrefix'];
             $seleniumServerRequestsTimeout = $sessionParameters['seleniumServerRequestsTimeout'];
+            $browserUrl                    = $sessionParameters['browserUrl'];
 
             $sessionPrefixUrlClass = new PHPUnit_Extensions_Selenium2TestCase_URL($sessionPrefix);
+            $browserUrlClass = new PHPUnit_Extensions_Selenium2TestCase_URL($browserUrl);
 
             // check if our session is still running, otherwise create new one
             $response = $driver->curl('GET', $seleniumServerUrl->descend("/wd/hub/sessions"), NULL);
@@ -117,7 +119,7 @@ class PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Persistent
                 $session = new PHPUnit_Extensions_Selenium2TestCase_Session(
                     $driver,
                     $sessionPrefixUrlClass,
-                    $seleniumServerUrl,
+                    $browserUrlClass,
                     $timeouts
                 );
             }
@@ -131,6 +133,7 @@ class PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Persistent
             $port                          = $parameters['port'];
             $sessionPrefix                 = $session->getSessionUrl()->__toString();
             $seleniumServerRequestsTimeout = $parameters['seleniumServerRequestsTimeout'];
+            $browserUrl                    = $parameters['browserUrl']->__toString();
         }
 
         $sessionParameters = [
@@ -139,6 +142,7 @@ class PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Persistent
             'port'                          => $port,
             'sessionPrefix'                 => $sessionPrefix,
             'seleniumServerRequestsTimeout' => $seleniumServerRequestsTimeout,
+            'browserUrl'                    => $browserUrl,
         ];
         file_put_contents($location, json_encode($sessionParameters));
 
