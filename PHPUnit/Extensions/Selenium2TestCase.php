@@ -161,6 +161,19 @@ abstract class PHPUnit_Extensions_Selenium2TestCase extends PHPUnit_Framework_Te
         }
     }
 
+    public static function setSessionStrategy($strat) {
+        if ($strat != "isolated" && $strat != "shared" && $strat != "persistent") {
+            throw new InvalidArgumentException("Session strategy must be either 'isolated', 'shared' or 'peristent'");
+        } elseif ($strat == "isolated") {
+            self::$sessionStrategy = new PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Isolated;
+        } elseif ($strat == "persistent") {
+            self::$sessionStrategy = new PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Persistent(self::defaultSessionStrategy());
+        } else {
+            self::$sessionStrategy = new PHPUnit_Extensions_Selenium2TestCase_SessionStrategy_Shared(self::defaultSessionStrategy());
+        }
+
+    }
+
     private static function sessionStrategy()
     {
         if (!self::$sessionStrategy) {
