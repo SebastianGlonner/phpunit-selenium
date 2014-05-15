@@ -98,10 +98,15 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 	 * Control whether to start selenium server with -debug option.
 	 * @var boolean
 	 */
-	static protected $debugSeleniumServer  = false;
+	static protected $debugSeleniumServer        = false;
+	static protected $debugSeleniumServerLogFile = false;
 
 	static public function setDebugSeleniumServer($bool) {
-		$this->debugSeleniumServer = $bool;
+		self::$debugSeleniumServer = $bool;
+	}
+
+	static public function setDebugSeleniumLogFile($string) {
+		self::$debugSeleniumServerLogFile = $string;
 	}
 
 	static public function browsers() {
@@ -150,6 +155,10 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 				$cmd .= ' -debug';
 			}
 
+			if (is_string(self::$debugSeleniumServerLogFile)) {
+				$cmd .= ' -log '.self::$debugSeleniumServerLogFile;
+			}
+
 			$browsers = static::browsers();
 			foreach ($browsers as $params) {
 				$browserName = $params['browserName'];
@@ -174,6 +183,8 @@ class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Ext
 			if ( $returnCode !== 0 )
 				throw new Exception('Invalid return code for command starting standalone selenium server.');
 		}
+
+		parent::setUpBeforeClass();
 	}
 
 }
