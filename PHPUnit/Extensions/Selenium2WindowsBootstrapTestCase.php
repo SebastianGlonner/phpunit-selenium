@@ -63,7 +63,7 @@
  * @copyright  2010-2013 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  */
-class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Extensions_Selenium2TestCase {
+abstract class PHPUnit_Extensions_Selenium2Windows_Bootstrap_TestCase extends PHPUnit_Extensions_Selenium2TestCase {
 
 	const SELENIUM_HOST                   = '127.0.0.1';
 	const SELENIUM_PORT                   = 4444;
