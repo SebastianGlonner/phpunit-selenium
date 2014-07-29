@@ -147,7 +147,12 @@ class PHPUnit_Extensions_Selenium2TestCase_Driver
                 'params' => $params,
             ], true);
 
-            throw new PHPUnit_Extensions_Selenium2TestCase_WebDriverException($message, isset($content['status']) ? $content['status'] : 13);
+            throw new PHPUnit_Extensions_Selenium2TestCase_WebDriverException(
+                $message,
+                isset($content['status']) ? $content['status'] : 13,
+                NULL,
+                $content
+            );
         }
         return new PHPUnit_Extensions_Selenium2TestCase_Response($content, $info);
     }
